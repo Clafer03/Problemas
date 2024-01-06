@@ -83,30 +83,58 @@ fillFunc()
 
 int main()
 {
-    vector<int> numeros;
-    vector<char> palabras;
+    vector<string> numeros;
+    vector<string> palabras;
 
     //char cadena[1000];
     string cadena;
+    string numero;
+    string palabra;
 
     cout << "->";
     //cin >> cadena;
     getline(cin,cadena,'\n'); // captura los espacios en blanco
 
-    cout << cadena << endl;
+    //cout << cadena << endl;
 
     for(int i = 0; i < cadena.length(); i++)
     {
         if(isalpha(cadena[i]))
         {
-            palabras.push_back(cadena[i]);
+            palabra = palabra + cadena[i];
         }
-        else
+        if((isalpha(cadena[i]) && cadena[i+1] == ' ') || (isalpha(cadena[i]) && cadena[i+1] == '\0'))
         {
-            numeros.push_back(atoi(cadena[i]));
+            palabras.push_back(palabra);
+            palabra = " ";
         }
 
-        // if(cadena[i] == ' ')
+        if(isdigit(cadena[i]))
+        {
+            numero = numero + cadena[i];
+        }
+        if((isdigit(cadena[i]) && cadena[i+1] == ' ') || (isdigit(cadena[i]) && cadena[i+1] == '\0'))
+        {
+            numeros.push_back(numero);
+            numero = " ";
+        }
+    }
+
+    for(int i = 0; i < palabras.size(); i++)
+    {
+        cout << palabras[i] << ' ';
+    }
+    cout << endl;
+    for(int i = 0; i < numeros.size(); i++)
+    {
+        cout << numeros[i] << ' ';
+    }
+}
+
+
+
+
+// if(cadena[i] == ' ')
         // {
         //     int k = 0;
         //     k = i - 1;
@@ -121,15 +149,22 @@ int main()
         //         }
         //     }
         //}
-    }
 
-    for(int i = 0; i < palabras.size(); i++)
-    {
-        cout << palabras[i] << ' ';
-    }
+         // if(isalpha(cadena[i]) && cadena[i+1] == ' ')
+        // {
+        //     palabras.push_back(" ");
+        // }
+        
+        // if(isdigit(cadena[i]))
+        // {
+        //     numeros.push_back(cadena[i]);
+        // }
 
-    for(int i = 0; i < numeros.size(); i++)
-    {
-        cout << numeros[i] << ' ';
-    }
-}
+        // if(isalpha(cadena[i]) && cadena[i+1] == ' ')
+        // {
+        //     palabras.push_back(' ');
+        // }
+        // if(isdigit(cadena[i]) && cadena[i+1] == ' ')
+        // {
+        //     numeros.push_back(' ');
+        // }
